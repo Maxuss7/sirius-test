@@ -259,7 +259,7 @@ helm install prometheus \
 Применяем minikube tunnel, если еще этого не сделали. Теперь Grafana доступна по адресу grafana.localhost.
 Необходимо авторизироваться, использовав логин и пароль, который мы помещали в secrets.
 
-**Proof of Concept**
+**Proof of Concept**  
 Для проверки прометеуса напрямую, небходимо временно пробросить порт, потому что prometheus в нашем случае не доступен из вне:
 ```bash
 kubectl port-forward -n monitoring svc/prometheus-kube-prometheus-prometheus 9090:9090
