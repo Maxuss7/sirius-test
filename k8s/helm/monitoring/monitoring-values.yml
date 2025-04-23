@@ -1,0 +1,35 @@
+alertmanager:
+  enabled: false
+
+prometheus:
+  prometheusSpec:
+    retention: 1d
+    storageSpec:
+      volumeClaimTemplate:
+        spec:
+          storageClassName: "standard" 
+          accessModes: ["ReadWriteOnce"]
+          resources:
+            requests:
+              storage: 2Gi  
+    serviceMonitorSelector: {}
+    serviceMonitorSelectorNilUsesHelmValues: false
+    serviceMonitorNamespaceSelector: {}
+    podMonitorSelector: {}
+    podMonitorNamespaceSelector: {}
+
+grafana:
+  service:
+    type: ClusterIP 
+  ingress:
+    enabled: true
+    ingressClassName: nginx
+    hosts:
+      - grafana.localhost
+    annotations:
+      nginx.ingress.kubernetes.io/rewrite-target: /
+  admin:
+    existingSecret: grafana-secrets
+    userKey: adminUser
+    passwordKey: adminPassword
+    
